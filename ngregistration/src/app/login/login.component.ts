@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// uses ngForm => need to import ngForm in ts file => also add formModule to appModule
+import{NgForm} from '@angular/forms'
 
 @Component({
   selector: 'app-login',
@@ -11,5 +13,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  loginUser(){
+    
+  }
 }
