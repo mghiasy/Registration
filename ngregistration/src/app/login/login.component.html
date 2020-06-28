@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Stacked form</h2>
+    <h2>login form</h2>
     <!-- we should change bootstrap form to angular form =>ngForm -->
     <form #loginform="ngForm" (ngSubmit)="loginUser();">
         <!-- Show error message -->
@@ -31,5 +31,6 @@
       <button type="submit" class="btn btn-info" [disabled]=loginform.invalid>Login</button>
     </form>
     <!-- <small class="float-right" (click)=registerUser()> new user? register here</small> -->
+    <!-- routerLink can work with both small and a -->
     <a class="float-right" [routerLink]="['/registerUser']"> new user? register here</a>
   </div>

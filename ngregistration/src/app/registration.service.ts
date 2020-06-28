@@ -15,4 +15,7 @@ export class RegistrationService {
     //call restfull endpoint here
     return this._http.post<any>("http://localhost:8090/loginUser",user);
   }
+  public registeruserFormRemote(user :User) :Observable<any>{
+    return this._http.post<any>("http://localhost:8090/registeruser",user)
+  }
 }

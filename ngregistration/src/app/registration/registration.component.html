@@ -1,1 +1,37 @@
-<p>registration works!</p>
+<div class="container">
+    <h2>Registration form</h2>
+    <form #registrationForm="ngForm" (ngSubmit)="registerUser()">
+      <small class="text-danger">{{msg}}</small>
+      <div class="form-group">
+        <label for="emailId">Email:</label>
+        <input type="email" class="form-control" placeholder="Enter email" name="emailId" [(ngModel)]=user.emailId  
+        #email="ngModel" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" [class.is-invalid]="email.touched && email.invalid"/>
+
+        <div *ngIf="email.errors && email.invalid && email.touched">
+            <small class="text-danger" *ngIf="email.errors.required">Email is a required field</small>
+            <small class="text-danger" *ngIf="email.errors.pattern">Enter a valid eamil</small>
+        </div>
+      </div>
+       <div class="form-group">
+        <label for="userName">Username:</label>
+        <input type="text" class="form-control" placeholder="Enter username" name="userName" [(ngModel)]=user.userName
+        required #userName="ngModel" [class.is-invalid]="userName.invalid && userName.touched">
+        <small class="text-danger" *ngIf="userName.invalid && userName.touched">Username is a required field</small>
+      </div>
+      <div class="form-group">
+        <label for="Password">Password:</label>
+        <input type="password" class="form-control" placeholder="Enter password" name="password" [(ngModel)]=user.password
+        required #password="ngModel" [class.is-invalid]="password.touched && password.invalid"> 
+        <small class="text-danger" *ngIf="password.invalid && password.touched">Password is a required field</small>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm password:</label>
+        <input type="password" class="form-control" placeholder="Repeat password" name="cPassword" (ngModel)="user.password"
+       #cPassword="ngModel" required [class.is-invalid]="cPassword.invalid && cPassword.touched">
+       <small class="text-danger" *ngIf="cPassword.touched &&(cPassword.value != password.value)">password does not match with confirm password</small>
+      <!-- <small class="text-danger" *ngIf="cPassword.touched && cPassword.invalid">Confirm password is a required field</small> -->
+      </div>
+      <button type="submit" class="btn btn-info" [disabled]=registrationForm.invalid>Register</button>
+      <a [routerLink]="['/loginUser']" class="float-right">Existing user? Click here</a>
+    </form>
+  </div>
