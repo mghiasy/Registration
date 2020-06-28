@@ -1,6 +1,7 @@
 package com.app.registration.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ public class RegistrationController {
 	private RegistrationService service;
 	//Call when user submit the form
 	@PostMapping("/registeruser")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public User registerUser(@RequestBody User user) throws Exception {
 		//check email not to be used before save
 		String tempEmailId=user.getEmailId();
@@ -36,11 +38,11 @@ public class RegistrationController {
 	}
 	
 	@PostMapping("/loginUser")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public User loginUser(@RequestBody User user) throws Exception {
 		String tempEmailId=user.getEmailId();
 		String tempPassword=user.getPassword();
-		User userObj=null;
-		userObj = service.fetchUserByEmailIdAndPassword(tempEmailId,tempPassword);
+		User userObj = service.fetchUserByEmailIdAndPassword(tempEmailId,tempPassword);
 		if(userObj == null) {
 			throw new Exception("bad credentials");
 		}

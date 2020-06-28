@@ -2,13 +2,19 @@
     <h2>Stacked form</h2>
     <!-- we should change bootstrap form to angular form =>ngForm -->
     <form #loginform="ngForm" (ngSubmit)="loginUser();">
+        <!-- Show error message -->
+        <small class="text-danger">{{msg}}</small>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        <!-- ngModel for bind real obj to UI elemet => 2way -->
+        <input type="email" class="form-control" placeholder="Enter email" name="email" [(ngModel)]="user.emailId" 
+        required #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
+        <!-- add class conditionally [class.className]="condition" -->
+        <small class ="text-danger" [class.d-none]="email.valid || email.untouched">email Id is a required field</small>
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+        <input type="password" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="user.password">
       </div>
       <div class="form-group form-check">
         <label class="form-check-label">
